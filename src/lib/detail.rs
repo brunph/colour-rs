@@ -2,7 +2,7 @@ use winapi::um::winnt::HANDLE;
 use winapi::um::processenv::GetStdHandle;
 use winapi::um::winbase::STD_OUTPUT_HANDLE;
 use winapi::um::wincon::SetConsoleTextAttribute;
-use crate::Colours;
+use crate::lib::Colours;
 
 pub fn get_output_handle() -> HANDLE {
     unsafe {
@@ -12,6 +12,6 @@ pub fn get_output_handle() -> HANDLE {
 
 pub fn set_colour(handle: HANDLE, col: Colours) {
     unsafe {
-        SetConsoleTextAttribute(handle, col);
+        SetConsoleTextAttribute(handle, col as u16);
     }
 }
